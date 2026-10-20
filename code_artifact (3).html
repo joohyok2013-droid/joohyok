@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전국 고령화 현황 및 전망 대시보드</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Font (Inter & Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md">
+        <div class="max-w-7xl mx-mx auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <i data-lucide="activity" class="w-8 h-8 text-indigo-300"></i>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">전국 고령화 현황 및 전망</h1>
+                    <p class="text-xs text-indigo-200 mt-0.5">대한민국 인구구조 변화 분석 및 통합 대응 보고서</p>
+                </div>
+            </div>
+            <div class="bg-indigo-800/80 px-4 py-2 rounded-xl border border-indigo-700/50 flex items-center space-x-2 text-sm">
+                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+                <span>현재 상태: <strong class="text-amber-300">초고령사회 진입 완료 (22.1%)</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-6">
+
+        <!-- Key Metrics Cards -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Metric 1 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-center space-x-4">
+                <div class="p-3 bg-red-50 text-red-600 rounded-xl">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">현재 고령인구 비중</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-1">22.1%</h3>
+                    <p class="text-xs text-red-500 font-medium mt-1 flex items-center">
+                        <i data-lucide="trending-up" class="w-3 h-3 mr-1"></i> 초고령사회 지속 확대
+                    </p>
+                </div>
+            </div>
+
+            <!-- Metric 2 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-center space-x-4">
+                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                    <i data-lucide="trending-up" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">2050년 예상 비중</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-1">40.1%</h3>
+                    <p class="text-xs text-indigo-600 font-medium mt-1 flex items-center">
+                        <i data-lucide="arrow-up-right" class="w-3 h-3 mr-1"></i> 약 1,900만 명 육박
+                    </p>
+                </div>
+            </div>
+
+            <!-- Metric 3 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-center space-x-4">
+                <div class="p-3 bg-amber-50 text-amber-600 rounded-xl">
+                    <i data-lucide="baby" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">유소년 인구 비중 (0~14세)</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-1">10.6%</h3>
+                    <p class="text-xs text-amber-600 font-medium mt-1 flex items-center">
+                        <i data-lucide="trending-down" class="w-3 h-3 mr-1"></i> 지속적인 감소세
+                    </p>
+                </div>
+            </div>
+
+            <!-- Metric 4 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-center space-x-4">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-500 font-medium">최고 고령화 지역 (전남)</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-1">26.5%</h3>
+                    <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center">
+                        <i data-lucide="alert-circle" class="w-3 h-3 mr-1"></i> 지방 소멸 위험 고조
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary & Conclusion Banner -->
+        <section class="bg-gradient-to-r from-indigo-900 to-slate-900 rounded-2xl p-6 shadow-lg text-white">
+            <div class="flex items-start space-x-4">
+                <div class="p-3 bg-indigo-700/50 rounded-xl hidden sm:block">
+                    <i data-lucide="file-text" class="w-7 h-7 text-indigo-200"></i>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-indigo-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">종합 결론</span>
+                        <h2 class="text-lg font-bold">우리나라 고령 인구 비율과 전망</h2>
+                    </div>
+                    <p class="text-slate-200 text-base leading-relaxed">
+                        대한민국은 65세 이상 고령 인구 비중이 <strong class="text-amber-300 font-semibold">22%를 돌파한 초고령사회</strong>로, 저출생에 따른 유소년층 급감과 생산인구 감소 속에 지방 소멸 위기와 부양 부담이 동시에 심화되고 있다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Chart 1: Aged Population Trend -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-base font-bold text-slate-800 flex items-center">
+                            <i data-lucide="line-chart" class="w-5 h-5 text-indigo-600 mr-2"></i>
+                            연도별 고령 인구 비중 추이 및 전망 (%)
+                        </h3>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">65세 이상 인구 비율의 가파른 증가 추세 (2000년 ~ 2050년 전망)</p>
+                </div>
+                <div class="h-64 relative">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Regional Aging Rates -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-base font-bold text-slate-800 flex items-center">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-indigo-600 mr-2"></i>
+                            주요 지역별 고령화율 비교 (%)
+                        </h3>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">수도권과 지방 농어촌 간 고령화 양극화 현상</p>
+                </div>
+                <div class="h-64 relative">
+                    <canvas id="regionalChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core One-Line Solution Section -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border-2 border-indigo-500/30 relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-indigo-50 rounded-full blur-2xl -z-0"></div>
+            <div class="relative z-10 space-y-3">
+                <div class="flex items-center space-x-2 text-indigo-700 font-bold text-sm">
+                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                    <span>핵심 대응 과제</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">
+                    주요 해결 방안
+                </h3>
+                <div class="p-4 bg-indigo-50/80 border border-indigo-100 rounded-xl text-indigo-950 font-medium text-base sm:text-lg leading-relaxed">
+                    "고령자 재고용 및 정년 연장, 출산·육아 부담 경감, 지방 거점 도시 육성 및 복지 인프라 개편을 통해 생산인구 감소와 지방 소멸 위기에 대응해야 한다."
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Solutions Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Pillar 1 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition duration-200">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-lucide="briefcase" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-slate-900 text-lg mb-2">1. 고령자 재고용 & 정년 연장</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    건강하고 경험 많은 어르신의 경제활동 참여를 유도하여 생산연령인구 감소 충격을 완화하고 노후 소득 안정을 도모합니다.
+                </p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition duration-200">
+                <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-slate-900 text-lg mb-2">2. 출산·육아 부담 경감</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    주거 지원, 양육비 보조, 공공 돌봄 서비스 확충을 통해 청년층의 결혼 및 출산 문턱을 획기적으로 낮춥니다.
+                </p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition duration-200">
+                <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
+                    <i data-lucide="building-2" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-slate-900 text-lg mb-2">3. 지방 거점 및 복지 개편</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    지방 소멸 위험 지역에 핵심 거점 도시를 육성하고, 의료·주거 인프라 재배치 및 맞춤형 통합 복지를 제공합니다.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 mt-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-1">
+            <p>대한민국 고령화 대응 리포트 대시보드</p>
+            <p class="text-slate-500">본 대시보드는 통계청 고령자 통계 및 인구추계 데이터를 기반으로 제작되었습니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Chart.js Setup
+        window.onload = function() {
+            // Chart 1: Trend Line Chart
+            const ctxTrend = document.getElementById('trendChart').getContext('2d');
+            new Chart(ctxTrend, {
+                type: 'line',
+                data: {
+                    labels: ['2000년', '2010년', '2018년', '2024년', '2030년(전망)', '2040년(전망)', '2050년(전망)'],
+                    datasets: [{
+                        label: '고령인구 비중 (%)',
+                        data: [7.2, 10.8, 14.3, 22.1, 25.5, 34.4, 40.1],
+                        borderColor: '#4f46e5',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: '#4f46e5',
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` 고령인구 비중: ${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 0,
+                            max: 50,
+                            ticks: {
+                                callback: function(value) { return value + '%'; }
+                            },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Regional Bar Chart
+            const ctxRegional = document.getElementById('regionalChart').getContext('2d');
+            new Chart(ctxRegional, {
+                type: 'bar',
+                data: {
+                    labels: ['전남', '경북', '전북', '강원', '전국 평균', '서울', '세종'],
+                    datasets: [{
+                        label: '고령인구 비율 (%)',
+                        data: [26.5, 24.8, 24.1, 24.0, 22.1, 18.5, 11.2],
+                        backgroundColor: [
+                            '#ef4444',
+                            '#f97316',
+                            '#f59e0b',
+                            '#f59e0b',
+                            '#6366f1',
+                            '#10b981',
+                            '#06b6d4'
+                        ],
+                        borderRadius: 8,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` 고령화율: ${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 30,
+                            ticks: {
+                                callback: function(value) { return value + '%'; }
+                            },
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
